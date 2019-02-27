@@ -23,3 +23,8 @@ func main() {
 func healthHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello World from Go.")
 }
+
+func add(x int, y int) (int, error) {
+	z := x + y
+	return z, nil
+}
