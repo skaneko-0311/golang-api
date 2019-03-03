@@ -10,11 +10,8 @@ func main() {
 	// /healthハンドラ作成
 	http.HandleFunc("/health", healthHandler)
 
-	// /sample.htmlハンドラ作成
-	http.Handle("/sample.html", http.FileServer(http.Dir("contents")))
-
-	// /profile.htmlハンドラ作成
-	http.Handle("/profile.html", http.FileServer(http.Dir("contents")))
+	// ルートディレクトリ設定
+	http.Handle("/", http.FileServer(http.Dir("contents")))
 
 	// 8080ポートで起動
 	http.ListenAndServe(":8080", nil)
