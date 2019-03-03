@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os/exec"
 )
 
 func main() {
@@ -18,7 +19,10 @@ func main() {
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello World from Go.")
+	cmd := exec.Command("free")
+	out, err := cmd.Output()
+	fmt.Fprintf(w, "<結果>\n %s", out)
+	fmt.Fprintf(w, "<エラー>\n %s", err)
 }
 
 func add(x int, y int) (int, error) {
