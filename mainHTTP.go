@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os/exec"
 )
@@ -15,7 +16,9 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("contents")))
 
 	// 8080ポートで起動
-	http.ListenAndServe(":8080", nil)
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal("ListenAndServe:", err)
+	}
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
